@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unblocked FPS - Free Online Gaming</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --background: #0f172a;
+      --text: #e2e8f0;
+      --card-bg: #1e293b;
+      --hover: #818cf8;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+    }
+
+    .nav {
+      background: var(--card-bg);
+      padding: 1.5rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      padding-top: 80px;
+      position: relative;
+    }
+
+    .animation-container {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .top-left {
+      top: 100px;
+      left: 50px;
+    }
+
+    .top-right {
+      top: 100px;
+      right: 50px;
+    }
+
+    .title {
+      font-size: 4.5rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--hover));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      animation: titleFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes titleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      color: #94a3b8;
+    }
+
+    .play-button {
+      padding: 1.2rem 3.5rem;
+      font-size: 1.25rem;
+      background: var(--primary);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .play-button:hover {
+      background: var(--hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -10px var(--primary);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: left;
+      transition: transform 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-card h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .feature-card p {
+      color: #94a3b8;
+      margin: 0;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      margin-top: 4rem;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 12px;
+      max-width: 800px;
+      margin: 4rem auto;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer {
+      background: var(--card-bg);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .copyright {
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .title {
+        font-size: 3rem;
+      }
+      .stats {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .animation-container {
+        width: 150px;
+        height: 150px;
+      }
+      .top-left, .top-right {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo">Unblocked FPS</div>
+  </nav>
+
+  <section class="hero">
+    <div class="animation-container top-left" id="animationLeft"></div>
+    <div class="animation-container top-right" id="animationRight"></div>
+    
+    <h1 class="title">Unblocked FPS</h1>
+    <p class="subtitle">Step into the future of browser gaming with stunning graphics, intense multiplayer battles, and unlimited action. No downloads, no restrictions – just pure gaming excitement.</p>
+    <a href="Games/index.html" style="text-decoration: none;">
+        <button class="play-button">Play Now</button>
+    </a>
+  
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Active Players</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">5 FPS</div>
+        <div class="stat-label">Smooth Gameplay</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">1</div>
+        <div class="stat-label">Weapons</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature-card">
+      <h2>Next-Gen Graphics</h2>
+      <p>Shit quality.....On purpose...</p>
+    </div>
+    <div class="feature-card">
+      <h2>Multiplayer</h2>
+      <p>It was a pain in the ass, but made it....</p>
+    </div>
+    <div class="feature-card">
+      <h2>Weapon Arsenal</h2>
+      <p>Just 1 Weapon, and that to is a pistol!</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="copyright">© 2025 Aaron. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Loading Lottie animations from local files
+    lottie.loadAnimation({
+      container: document.getElementById('animationLeft'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'Animations/Game_controller.json'
+    });
+
+    lottie.loadAnimation({
+      container: document.getElementById('animationRight'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'Animations/Target_scope.json'
+    });
+  </script>
+</body>
+</html>
