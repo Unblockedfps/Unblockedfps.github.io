@@ -4,100 +4,126 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Redirect</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <style>
       body {
         background-color: #121212;
         color: #e0e0e0;
-        font-family: 'Arial', sans-serif;
+        font-family: Impact, 'Arial Black', sans-serif;
         margin: 0;
         padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow: hidden;
+        line-height: 1.6;
+      }
+      #main-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        overflow-y: auto;
+        max-height: 100vh;
       }
       #unity-container {
         position: relative;
-        width: 960px;
+        width: 100%;
+        max-width: 960px;
         height: 600px;
         background-color: #1e1e1e;
         box-shadow: 0 4px 6px rgba(0,0,0,0.5);
         border-radius: 8px;
         overflow: hidden;
+        margin: 20px auto;
       }
       #unity-canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
         height: 100%;
         background-size: cover !important;
         background-position: center !important;
       }
+      #redirect-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
       #redirect-logo {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        font-family: 'Anton', sans-serif;
-        font-size: 36px;
+        font-family: Impact, 'Arial Black', sans-serif;
+        font-size: 48px;
         color: white;
         text-transform: uppercase;
       }
       #voxar-link {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
-        background-color: white;
+        background-color: #2196F3;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
         transition: transform 0.3s;
       }
-      #voxar-link:hover {
-        transform: scale(1.1);
-      }
       #voxar-link span {
-        font-size: 36px;
+        font-size: 48px;
         font-weight: bold;
-        color: black;
+        color: white;
+      }
+      #game-description {
+        color: #B0B0B0;
+        max-width: 960px;
+        margin: 20px auto;
+        text-align: center;
+        font-family: Arial, sans-serif;
       }
       #unity-loading-bar {
-        position: absolute;
-        left: 0;
-        bottom: 0;
         width: 100%;
-        height: 5px;
+        height: 10px;
         background-color: #333;
+        margin-bottom: 10px;
       }
       #unity-progress-bar-full {
         height: 100%;
-        background-color: #4CAF50;
+        background-color: #2196F3;
         transition: width 0.5s ease;
+      }
+      #fullscreen-btn {
+        display: block;
+        margin: 10px auto;
+        padding: 10px 20px;
+        background-color: #2196F3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: Impact, 'Arial Black', sans-serif;
       }
     </style>
   </head>
   <body>
-    <div id="unity-container" class="unity-desktop">
-      <div id="redirect-logo">Redirect</div>
-      <div id="voxar-link" onclick="window.location.href='https://voxar.netlify.app/'">
-        <span>A</span>
+    <div id="main-container">
+      <div id="redirect-header">
+        <div id="redirect-logo">Redirect</div>
+        <div id="voxar-link" onclick="window.location.href='https://voxar.netlify.app/'">
+          <span>A</span>
+        </div>
       </div>
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-progress-bar-full"></div>
+
+      <div id="unity-container" class="unity-desktop">
+        <div id="unity-loading-bar">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+        <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+        <button id="fullscreen-btn">Enter Fullscreen</button>
+      </div>
+
+      <div id="game-description">
+        <p>Redirect is an innovative puzzle game that challenges your spatial reasoning and problem-solving skills. Navigate through complex environments, manipulate pathways, and find the most efficient route to your destination.</p>
       </div>
     </div>
+
     <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenBtn = document.querySelector("#fullscreen-btn");
 
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/Redirect Web.loader.js";
@@ -120,6 +146,9 @@
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
+          fullscreenBtn.onclick = () => {
+            unityInstance.SetFullscreen(1);
+          };
         }).catch((message) => {
           alert(message);
         });
