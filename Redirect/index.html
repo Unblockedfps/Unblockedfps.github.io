@@ -11,37 +11,17 @@
         font-family: Impact, 'Arial Black', sans-serif;
         margin: 0;
         padding: 0;
-        line-height: 1.6;
-      }
-      #main-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        overflow-y: auto;
-        max-height: 100vh;
-      }
-      #unity-container {
-        position: relative;
-        width: 100%;
-        max-width: 960px;
-        height: 600px;
-        background-color: #1e1e1e;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.5);
-        border-radius: 8px;
-        overflow: hidden;
-        margin: 20px auto;
-      }
-      #unity-canvas {
-        width: 100%;
-        height: 100%;
-        background-size: cover !important;
-        background-position: center !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       #redirect-header {
+        width: 100%;
+        max-width: 960px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
+        padding: 20px;
       }
       #redirect-logo {
         font-family: Impact, 'Arial Black', sans-serif;
@@ -65,18 +45,26 @@
         font-weight: bold;
         color: white;
       }
-      #game-description {
-        color: #B0B0B0;
+      #unity-container {
+        position: relative;
+        width: 100%;
         max-width: 960px;
-        margin: 20px auto;
-        text-align: center;
-        font-family: Arial, sans-serif;
+        height: 600px;
+        background-color: #1e1e1e;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      #unity-canvas {
+        width: 100%;
+        height: 100%;
+        background-size: cover !important;
+        background-position: center !important;
       }
       #unity-loading-bar {
         width: 100%;
         height: 10px;
         background-color: #333;
-        margin-bottom: 10px;
       }
       #unity-progress-bar-full {
         height: 100%;
@@ -84,6 +72,19 @@
         transition: width 0.5s ease;
       }
       #fullscreen-btn {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        padding: 10px 20px;
+        background-color: #2196F3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: Impact, 'Arial Black', sans-serif;
+        z-index: 10;
+      }
+      #game-fullscreen-btn {
         display: block;
         margin: 10px auto;
         padding: 10px 20px;
@@ -94,28 +95,36 @@
         cursor: pointer;
         font-family: Impact, 'Arial Black', sans-serif;
       }
+      #game-description {
+        max-width: 960px;
+        text-align: center;
+        color: #B0B0B0;
+        font-family: Arial, sans-serif;
+        margin-top: 20px;
+        padding: 0 20px;
+      }
     </style>
   </head>
   <body>
-    <div id="main-container">
-      <div id="redirect-header">
-        <div id="redirect-logo">Redirect</div>
-        <div id="voxar-link" onclick="window.location.href='https://voxar.netlify.app/'">
-          <span>A</span>
-        </div>
+    <div id="redirect-header">
+      <div id="redirect-logo">Redirect</div>
+      <div id="voxar-link" onclick="window.location.href='https://voxar.netlify.app/'">
+        <span>A</span>
       </div>
+    </div>
 
-      <div id="unity-container" class="unity-desktop">
-        <div id="unity-loading-bar">
-          <div id="unity-progress-bar-full"></div>
-        </div>
-        <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
-        <button id="fullscreen-btn">Enter Fullscreen</button>
+    <div id="unity-container" class="unity-desktop">
+      <div id="unity-loading-bar">
+        <div id="unity-progress-bar-full"></div>
       </div>
+      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+      <button id="fullscreen-btn">Fullscreen</button>
+    </div>
 
-      <div id="game-description">
-        <p>Redirect is an innovative puzzle game that challenges your spatial reasoning and problem-solving skills. Navigate through complex environments, manipulate pathways, and find the most efficient route to your destination.</p>
-      </div>
+    <button id="game-fullscreen-btn">Enter Fullscreen</button>
+
+    <div id="game-description">
+      <p>Redirect is an innovative puzzle game that challenges your spatial reasoning and problem-solving skills. Navigate through complex environments, manipulate pathways, and find the most efficient route to your destination.</p>
     </div>
 
     <script>
@@ -124,6 +133,7 @@
       var loadingBar = document.querySelector("#unity-loading-bar");
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenBtn = document.querySelector("#fullscreen-btn");
+      var gameFullscreenBtn = document.querySelector("#game-fullscreen-btn");
 
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/Redirect Web.loader.js";
@@ -146,9 +156,14 @@
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
-          fullscreenBtn.onclick = () => {
+          
+          // Add fullscreen functionality to both buttons
+          function enterFullscreen() {
             unityInstance.SetFullscreen(1);
-          };
+          }
+          
+          fullscreenBtn.onclick = enterFullscreen;
+          gameFullscreenBtn.onclick = enterFullscreen;
         }).catch((message) => {
           alert(message);
         });
