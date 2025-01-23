@@ -95,7 +95,7 @@
       color: #94a3b8;
     }
 
-    .play-button {
+    .play-button, .redirect-button {
       padding: 1.2rem 3.5rem;
       font-size: 1.25rem;
       background: var(--primary);
@@ -107,16 +107,10 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       font-weight: bold;
-      animation: pulse 2s infinite;
+      margin: 10px;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    .play-button:hover {
+    .play-button:hover, .redirect-button:hover {
       background: var(--hover);
       transform: translateY(-2px);
       box-shadow: 0 10px 20px -10px var(--primary);
@@ -140,50 +134,9 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .feature-card h2 {
-      color: var(--primary);
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-
-    .feature-card p {
-      color: #94a3b8;
-      margin: 0;
-    }
-
     .feature-card:hover {
       transform: translateY(-5px);
       border-color: var(--primary);
-    }
-
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 4rem;
-      margin-top: 4rem;
-      padding: 2rem;
-      background: var(--card-bg);
-      border-radius: 12px;
-      max-width: 800px;
-      margin: 4rem auto;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      color: #94a3b8;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
     }
 
     .footer {
@@ -194,25 +147,13 @@
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .copyright {
-      color: #94a3b8;
-      font-size: 0.9rem;
-    }
-
     @media (max-width: 768px) {
       .title {
         font-size: 3rem;
       }
-      .stats {
-        flex-direction: column;
-        gap: 2rem;
-      }
       .animation-container {
         width: 150px;
         height: 150px;
-      }
-      .top-left, .top-right {
-        display: none;
       }
     }
   </style>
@@ -223,30 +164,14 @@
   </nav>
 
   <section class="hero">
-    <div class="animation-container top-left" id="animationLeft"></div>
-    <div class="animation-container top-right" id="animationRight"></div>
-    
     <h1 class="title">Unblocked FPS</h1>
-    <p class="subtitle">Step into the future of browser gaming with stunning graphics, intense multiplayer battles, and unlimited action. No downloads, no restrictions – just pure gaming excitement.</p>
+    <p class="subtitle">Step into the future of browser gaming with stunning graphics, intense multiplayer battles, and unlimited action.</p>
     <a href="Games/index.html" style="text-decoration: none;">
-        <button class="play-button">Play Now</button>
+        <button class="play-button">FPS Game</button>
     </a>
-  
-
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-number">0</div>
-        <div class="stat-label">Active Players</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">5 FPS</div>
-        <div class="stat-label">Smooth Gameplay</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">1</div>
-        <div class="stat-label">Weapons</div>
-      </div>
-    </div>
+    <a href="/Redirect/index.html" style="text-decoration: none;">
+        <button class="redirect-button">Redirect</button>
+    </a>
   </section>
 
   <section class="features">
@@ -259,32 +184,13 @@
       <p>It was a pain in the ass, but made it....</p>
     </div>
     <div class="feature-card">
-      <h2>Weapon Arsenal</h2>
-      <p>Just 1 Weapon, and that to is a pistol!</p>
+      <h2>Redirect</h2>
+      <p>Innovative puzzle mechanics with a unique light redirection feature. Explore levels and solve challenges to unlock new paths!</p>
     </div>
   </section>
 
   <footer class="footer">
     <div class="copyright">© 2025 Aaron. All rights reserved.</div>
   </footer>
-
-  <script>
-    // Loading Lottie animations from local files
-    lottie.loadAnimation({
-      container: document.getElementById('animationLeft'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'Animations/Game_controller.json'
-    });
-
-    lottie.loadAnimation({
-      container: document.getElementById('animationRight'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'Animations/Target_scope.json'
-    });
-  </script>
 </body>
 </html>
