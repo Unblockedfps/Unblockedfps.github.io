@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Unblocked FPS - Free Online Gaming</title>
+  <title>Redirect - Demo</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
   <style>
     :root {
@@ -19,6 +19,50 @@
       color: var(--text);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
+    }
+
+    .password-modal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+
+    .password-modal-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+    }
+
+    .password-modal input {
+      padding: 0.8rem;
+      margin-top: 1rem;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    .password-modal button {
+      padding: 0.8rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .password-modal button:hover {
+      background: var(--hover);
     }
 
     .nav {
@@ -159,38 +203,66 @@
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="logo">Unblocked FPS</div>
-  </nav>
-
-  <section class="hero">
-    <h1 class="title">Unblocked FPS</h1>
-    <p class="subtitle">Step into the future of browser gaming with stunning graphics, intense multiplayer battles, and unlimited action.</p>
-    <a href="Games/index.html" style="text-decoration: none;">
-        <button class="play-button">FPS Game</button>
-    </a>
-    <a href="/Redirect/index.html" style="text-decoration: none;">
-        <button class="redirect-button">Redirect</button>
-    </a>
-  </section>
-
-  <section class="features">
-    <div class="feature-card">
-      <h2>Next-Gen Graphics</h2>
-      <p>Shit quality.....On purpose...</p>
+  <!-- Password Modal -->
+  <div class="password-modal" id="passwordModal">
+    <div class="password-modal-content">
+      <h2>Enter Password</h2>
+      <input type="password" id="password" placeholder="Enter password" />
+      <button onclick="checkPassword()">Submit</button>
     </div>
-    <div class="feature-card">
-      <h2>Multiplayer</h2>
-      <p>It was a pain in the ass, but made it....</p>
-    </div>
-    <div class="feature-card">
-      <h2>Redirect</h2>
-      <p>Innovative puzzle mechanics with a unique light redirection feature. Explore levels and solve challenges to unlock new paths!</p>
-    </div>
-  </section>
+  </div>
 
-  <footer class="footer">
-    <div class="copyright">© 2025 Aaron. All rights reserved.</div>
-  </footer>
+  <!-- Main Content (Initially Hidden) -->
+  <div id="content" style="display: none;">
+    <nav class="nav">
+      <div class="logo">Redirect - Demo</div>
+    </nav>
+
+    <section class="hero">
+      <h1 class="title">Redirect - Demo</h1>
+      <p class="subtitle">Welcome to Redirect's demo page, where you can play the latest Demo build.</p>
+      <a href="/Redirect v1.2/index.html" style="text-decoration: none;">
+        <button class="play-button">Redirect v1.2</button>
+      </a>
+      <a href="/Redirect v1/index.html" style="text-decoration: none;">
+        <button class="redirect-button">Redirect v1</button>
+      </a>
+    </section>
+
+    <section class="features">
+      <div class="feature-card">
+        <h2>Next-Gen Graphics</h2>
+        <p>Shit quality.....On purpose...</p>
+      </div>
+      <div class="feature-card">
+        <h2>Lazers</h2>
+        <p>I dont know why this is black</p>
+      </div>
+      <div class="feature-card">
+        <h2>Redirect</h2>
+        <p>That's the game where you redirect laser to panel. It's a puzzle game. WISHLIST ON STEAM!!!</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="copyright">© 2025 Aaron. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <script>
+    const correctPassword = 'redirect1243';
+
+    function checkPassword() {
+      const enteredPassword = document.getElementById('password').value;
+      if (enteredPassword === correctPassword) {
+        // Hide the password modal
+        document.getElementById('passwordModal').style.display = 'none';
+        // Show the main content
+        document.getElementById('content').style.display = 'block';
+      } else {
+        alert('Incorrect password, please try again.');
+      }
+    }
+  </script>
 </body>
 </html>
