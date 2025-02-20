@@ -2,7 +2,6 @@ const cacheName = "Voxar-Redirect-1.2";
 const contentToCache = [
     "Build/Redirect Web.loader.js",
     "Build/Redirect Web.framework.js",
-    "Build/Redirect Web.worker.js",
     "Build/Redirect Web.data",
     "Build/Redirect Web.wasm",
     "TemplateData/style.css"
